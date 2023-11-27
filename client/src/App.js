@@ -1,11 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Layout from './Component/Layout/Layout';
 function App() {
+  
   return (
-    <div className="App">
-     <h1>Hello word </h1>
-    </div>
+    <>
+    <Layout>
+      <h1>Ecommerce App</h1>
+    </Layout>
+    </>
   );
 }
 
