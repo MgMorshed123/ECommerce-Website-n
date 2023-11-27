@@ -6,21 +6,18 @@ import mongoose  from "mongoose";
 const userSchema = new mongoose.Schema(
 
     {
-        name : {
-
-            type : String,
+        name: {
+            type: String,
             required: true,
-            trim : true,
-
-        },
-
-        email : {
-
-            type : String,
+        
+          },
+          email: {
+            type: String,
             required: true,
-            trim : true,
-            unique : true
-        },
+            trim: true,
+            unique: true,
+            lowercase: true, // Ensure email uniqueness is case-insensitive
+          },
 
         password : {
             type : String,
@@ -38,7 +35,7 @@ const userSchema = new mongoose.Schema(
         },
 
         role : {
-            type : StriNumberg,
+            type : String,
            default : 0,
         },
 

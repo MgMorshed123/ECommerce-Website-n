@@ -1,6 +1,7 @@
-import { hashPassword } from "../Helpers/authHelpers";
+import { hashPassword } from "../Helpers/authHelpers.js";
+import userModel from "../Models/userModel.js";
 
-export const  registerController   =  async    (req,res) => {
+export const  registerController   =  async( req, res) => {
 
       try {
 
@@ -41,16 +42,17 @@ export const  registerController   =  async    (req,res) => {
 
 
 
-        const user = new userModel({name,email,phone, address, password : hashPassword}).save()
+        const user = await new userModel({name,email,phone, address, password : hashedPassword}).save()
 
 
 
           
-     res.send(201).send ({
-        success :true,
-        message :"User Registered Successfully",
-        user,
-     })
+        res.status(201).send({
+            success: true,
+            message: "User Registered Successfully",
+            user,
+          });
+          
 
       }
  

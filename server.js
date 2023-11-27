@@ -3,9 +3,13 @@ import colors from 'colors';
 import  dotenv from 'dotenv'
 import connectDb from './Config/db.js';
 import authRoutes from './Route/authRoute.js'
+import cors from 'cors'
 
 const app = express();
+app.use(express.json());
 
+
+app.use(cors())
 dotenv.config()
 const port = process.env.PORT;
 console.log(port)
