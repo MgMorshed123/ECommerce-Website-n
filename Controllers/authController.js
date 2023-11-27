@@ -1,10 +1,11 @@
 import { hashPassword } from "../Helpers/authHelpers.js";
 import userModel from "../Models/userModel.js";
+import JWT from 'jsonwebtoken';
+
+
 
 export const  registerController   =  async( req, res) => {
-
       try {
-
          const {name, email , password, phone, address} = req.body;
 
         // validation
@@ -74,3 +75,65 @@ export const  registerController   =  async( req, res) => {
 
 
 }
+
+
+
+export const loginController =   async (req, res) => {
+
+
+
+    try {
+        
+         const {email, password} = req.body;
+
+
+
+
+         if(!email || !password) {
+
+            return res.status(404).send({
+                success :false,
+                message : "Invalid email or password"
+
+            })
+         }
+
+
+         
+
+
+    } catch (error) {
+
+
+        console.log(error)
+        res.status(500).send({
+            success : false,
+            message : "Error in login",
+            error
+
+        })
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
