@@ -3,10 +3,11 @@ import userModel from "../Models/userModel.js"
 
 
 export const requireSignIn = async(req,res,next) => {
-
     try {
         const decode = JWT.verify(req.headers.authorization, process.env.JWT_SECRET)
-        next()
+        req.user = decode
+        next()  
+
     } catch (error) {
         
     }
@@ -17,15 +18,10 @@ export const requireSignIn = async(req,res,next) => {
 
 
 // admin access 
-
 export const isAdmin = async (req,res,next) => {
-
-     const user = await userModel.findById(req.user._id)
-
-
+    const user = await userModel.findById(req.user._id)
     try {   
-
-        if (user.role !== 1) {
+        if (user.role !== "Admin") {
             return res.status(401).send({
                 success : false,
                 message : 'Unauthorizes Access',
@@ -41,6 +37,5 @@ export const isAdmin = async (req,res,next) => {
             error,
             message : "Error in Admin Middlewares"
         })
-
     }
 }
