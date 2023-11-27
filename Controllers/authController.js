@@ -1,9 +1,9 @@
-import { hashPassword } from "../Helpers/authHelpers.js";
+import {  hashPassword } from "../Helpers/authHelpers.js";
 import userModel from "../Models/userModel.js";
 import JWT from 'jsonwebtoken';
 
-
-
+import  bcrypt from 'bcrypt'
+ 
 export const  registerController   =  async( req, res) => {
       try {
          const {name, email , password, phone, address} = req.body;
@@ -88,7 +88,7 @@ export const loginController =   async (req, res) => {
 
 
 
-
+// checking for validation
          if(!email || !password) {
 
             return res.status(404).send({
@@ -99,7 +99,49 @@ export const loginController =   async (req, res) => {
          }
 
 
-         
+         const user =  await userModel.findOne({email})
+
+
+ // checking for  user      
+         if(!user) {
+
+              return res.status(404).send({
+                success : false,
+                message :'Email is not registered'
+              })
+
+         }
+
+ // checking for  password      
+         const match  =  bcrypt.compareSync(password, user.password)
+
+
+         if(!match){
+            return res.status(200).send({
+                success : false,
+                message : "Invalid Password"
+            })
+         }
+
+
+//   adding token 
+
+   const token = await JWT.sign({_id : user._id}, process.env.JWT_SECRET, {
+     expiresIn : "7d",
+   })
+
+   res.status(200).send({
+    success : true,
+    message :"login succesfully",
+    user : {
+        name : user.name,
+        email : user.email,
+        phone : user.phone,
+        address : user.address,
+    },
+    token, 
+  })
+
 
 
     } catch (error) {
