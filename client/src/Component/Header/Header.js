@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 
 import {GiShoppingBag}  from 'react-icons/gi'
 
 
 const Header = () => {
+
+
+  const [auth, setAuth] = useState()
+
   return (
 
     <div>
@@ -28,13 +32,21 @@ const Header = () => {
 
 
 
-        <li   className="nav-item">
+       {
+        !auth?.user ? (<> <li   className="nav-item">
         <NavLink to="/register"  className="nav-link " aria-current="page" href="#">Register</NavLink>
         </li>
 
         <li className="nav-item">
         <NavLink to="/login"  className="nav-link " aria-current="page" href="#">Login</NavLink>
         </li>
+        </>) : (<>
+        
+          <li className="nav-item">
+        <NavLink to="/login"  className="nav-link " aria-current="page" href="#">Logout</NavLink>
+        </li>
+        </>)
+       }
 
 
         <li className="nav-item">
