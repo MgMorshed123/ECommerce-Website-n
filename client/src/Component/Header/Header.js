@@ -9,6 +9,22 @@ const Header = () => {
 
   const [auth, setAuth] = useState()
 
+
+    const handleLogOut = () => {
+
+      setAuth({
+        ...auth,
+        user : null,
+        token : ""
+      })
+
+
+
+    }
+ 
+console.log(auth?.user)
+
+
   return (
 
     <div>
@@ -43,7 +59,7 @@ const Header = () => {
         </>) : (<>
         
           <li className="nav-item">
-        <NavLink to="/login"  className="nav-link " aria-current="page" href="#">Logout</NavLink>
+        <NavLink to="/login"  onClick={handleLogOut} className="nav-link " aria-current="page" href="#">Logout</NavLink>
         </li>
         </>)
        }

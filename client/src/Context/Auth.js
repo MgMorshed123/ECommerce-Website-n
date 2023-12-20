@@ -3,7 +3,11 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 
   const AuthContext = createContext();
+
+
   const AuthProvider = ({ children}) => {
+
+
     const [auth, setAuth] = useState({
         user : null,
         token : "",
@@ -12,17 +16,18 @@ import { createContext, useContext, useEffect, useState } from "react";
      
     useEffect(() => {
       const data = localStorage.getItem("auth");
-      if(data) {
+  
+      if (data) {
         const parsedData = JSON.parse(data);
         setAuth({
-          ...auth, 
-          user : parsedData.user,
-          token : parsedData.token,
-        })
+          ...auth,
+          user: parsedData.user,
+          token: parsedData.token,
+        });
       }
-    }, [auth])
-
-
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // Empty dependency array since there are no external dependencies
+  
 
     
     return (
