@@ -4,12 +4,15 @@ import { useAuth } from '../../Context/Auth';
 
 const Home = () => {
 
-  // const [auth, setAuth] = useAuth("");
+  const [auth, setAuth] = useAuth();
 
 
 
   return (
-    <Layout>Home</Layout>
+    <Layout>
+      <h1>Home</h1>
+    <pre>{JSON.stringify(auth, null,4)}</pre>
+    </Layout>
   )
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 
 import {GiShoppingBag}  from 'react-icons/gi'
+import { toast } from 'react-toastify';
 
 
 const Header = () => {
@@ -11,18 +12,16 @@ const Header = () => {
 
 
     const handleLogOut = () => {
-
       setAuth({
         ...auth,
         user : null,
         token : ""
       })
-
-
-
+      localStorage.removeItem("auth")
+      toast.success("Log-Out Successfully")
     }
  
-console.log(auth?.user)
+
 
 
   return (

@@ -11,6 +11,10 @@ import Register from './Pages/Regsiter/Register';
 import Login from './Pages/Login/Login';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DashBoARD from './Pages/user/DashBoARD.js';
+import PrivateRoute from './Component/Route/Private.js';
+// import Dashboard from './Pages/user/DashBoARD.js';
+
 function App() {
   
   return (
@@ -20,6 +24,12 @@ function App() {
     <Route path='/' element ={<Home></Home>} />
     <Route path='/about' element ={<About></About>} />
     <Route path='/contact' element ={<Coontact></Coontact>} />
+
+  
+     <Route path='dashboard' element={<PrivateRoute></PrivateRoute>}>
+     <Route path='/' element ={<DashBoARD></DashBoARD>} />
+     </Route>
+
     <Route path='/policy' element ={<Policy></Policy>} />
     <Route path='/register' element ={<Register></Register>} />
     <Route path='/login' element ={<Login></Login>} />

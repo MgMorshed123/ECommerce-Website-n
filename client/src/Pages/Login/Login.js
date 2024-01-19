@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 const Login = () => {
 
 
@@ -23,7 +24,7 @@ const Login = () => {
      const res = await axios.post('/api/v1/auth/login', { email, password  })
      
 
-     if(res.data.success){
+     if(  res && res.data.success){
        toast.success(res.data.message )
        setAuth({
         ...auth,
