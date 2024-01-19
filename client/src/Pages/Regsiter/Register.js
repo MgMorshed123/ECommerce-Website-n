@@ -22,7 +22,9 @@ const Register = () => {
    e.preventDefault()
 
     try {
-      const res = await axios.post('/api/v1/auth/register', {name, email, password ,phone, address ,answer})  
+      const res = await axios.post('/api/v1/auth/register', {name, email, password ,phone, address,answer})  
+
+      console.log(res)
       if(res.data.success){
         toast.success(res.data.message )
         navigate("/login")
@@ -101,7 +103,7 @@ const Register = () => {
 
 
       <Form.Group className="mb-3" controlId="formAnswer">
-        <Form.Control type="address" 
+        <Form.Control type="answer" 
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
           placeholder=" What is your favouwrite sports " />

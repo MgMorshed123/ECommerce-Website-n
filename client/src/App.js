@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DashBoARD from './Pages/user/DashBoARD.js';
 import PrivateRoute from './Component/Route/Private.js';
+import ForgotPasssword from './Pages/Auth/Forgot-Password.js';
 // import Dashboard from './Pages/user/DashBoARD.js';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     <Route path='/' element ={<Home></Home>} />
     <Route path='/about' element ={<About></About>} />
     <Route path='/contact' element ={<Coontact></Coontact>} />
+    <Route path='/forgot-password' element ={<ForgotPasssword></ForgotPasssword>} />
 
      <Route path='/dashboard' element={<PrivateRoute></PrivateRoute>}>
      <Route path='' element ={<DashBoARD></DashBoARD>} />
