@@ -3,6 +3,7 @@ import colors from 'colors';
 import  dotenv from 'dotenv'
 import connectDb from './Config/db.js';
 import authRoutes from './Route/authRoute.js'
+import CategoryRoutes from './Route/categoryRoutes.js'
 import cors from 'cors'
 
 const app = express();
@@ -30,6 +31,7 @@ connectDb()
 
 // routes
 app.use("/api/v1/auth", authRoutes)
+app.use("/api/v1/category", CategoryRoutes)
 
 
 app.listen(port, () => {
