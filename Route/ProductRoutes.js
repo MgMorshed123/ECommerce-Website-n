@@ -1,7 +1,7 @@
 import express from "express";
 import {
   
-  createProductController, getProductController, getSingleProductController, productPhotoController,
+  createProductController, deleteProductController, getProductController, getSingleProductController, productPhotoController,
 
 } from "../Controllers/productController.js";
 import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware.js";
@@ -40,6 +40,14 @@ router.get(
 
 
 router.get('/product-photo/:pid', productPhotoController)
+
+
+
+
+// delete Products
+router.get('/product', deleteProductController)
+
+
 
 
 export default router;
