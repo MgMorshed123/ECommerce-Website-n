@@ -1,7 +1,7 @@
 import express from "express";
 import {
   
-  createProductController, getProductController,
+  createProductController, getProductController, getSingleProductController, productPhotoController,
 
 } from "../Controllers/productController.js";
 import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware.js";
@@ -9,7 +9,7 @@ import formidable from "express-formidable";
 
 const router = express.Router();
 
-//routes
+//create-product
 router.post(
   "/create-product",
   requireSignIn,
@@ -18,7 +18,7 @@ router.post(
   createProductController
 );
 
-
+// get pRODUCTS
 router.get(
   "/get-product",
   requireSignIn,
@@ -27,9 +27,19 @@ router.get(
   getProductController
 
 )
+// get SingleProducts
+router.get(
+  "/get-SingleProduct",
+  requireSignIn,
+  isAdmin,
+  formidable(),
+  getSingleProductController
+)
+
+// get Photo
 
 
-
+router.get('/product-photo/:pid', productPhotoController)
 
 
 export default router;
