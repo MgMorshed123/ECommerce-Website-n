@@ -11,11 +11,18 @@ import Register from './Pages/Regsiter/Register';
 import Login from './Pages/Login/Login';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import DashBoARD from './Pages/user/DashBoARD.js';
+import Dashboard from './Pages/user/Dashboard.js';
 import PrivateRoute from './Component/Route/Private.js';
 import ForgotPasssword from './Pages/Auth/Forgot-Password.js';
 import AdminRoute from './Component/Route/AdminRoute.js';
 import AdminDashboard from './Component/Admin/AdminDashboard.js';
+import CreateCategory from './Component/Admin/CreateCategory.js';
+import CreateProduct from './Component/Admin/CreateProduct.js';
+// import Orders from './Component/Admin/Orders.js';
+import Products from './Component/Admin/Products.js';
+import Users from './Component/Admin/Users.js';
+import Orders from './Pages/user/Orders.js';
+import Profile from './Pages/user/Profile.js';
 // import Dashboard from './Pages/user/DashBoARD.js';
 
 function App() {
@@ -29,12 +36,18 @@ function App() {
     <Route path='/contact' element ={<Coontact></Coontact>} />
     <Route path='/forgot-password' element ={<ForgotPasssword></ForgotPasssword>} />
 
-     <Route path='/dashboard' element={<PrivateRoute></PrivateRoute>}>
-     <Route path='' element ={<DashBoARD></DashBoARD>} />
-     </Route>
+    <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="user" element={<Dashboard />} />
+          <Route path="user/orders" element={<Orders />} />
+          <Route path="user/profile" element={<Profile />} />
+        </Route>
      
      <Route path='/dashboard' element={<AdminRoute></AdminRoute>}>
      <Route path='admin' element ={<AdminDashboard></AdminDashboard>} />
+     <Route path="admin/create-category" element={<CreateCategory />} />
+    <Route path="admin/create-product" element={<CreateProduct />} />
+    <Route path="admin/products" element={<Products/>} />
+    <Route path="admin/users" element={<Users/>} />
      </Route>
 
     <Route path='/policy' element ={<Policy></Policy>} />
