@@ -4,6 +4,7 @@ import  dotenv from 'dotenv'
 import connectDb from './Config/db.js';
 import authRoutes from './Route/authRoute.js'
 import CategoryRoutes from './Route/categoryRoutes.js'
+import ProductsRoutes from './Route/ProductRoutes.js'
 import cors from 'cors'
 
 const app = express();
@@ -32,6 +33,7 @@ connectDb()
 // routes
 app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/category", CategoryRoutes)
+app.use("/api/v1/products", ProductsRoutes)
 
 
 app.listen(port, () => {
