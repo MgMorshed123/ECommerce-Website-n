@@ -74,7 +74,7 @@ export const getProductController = async (req, res) => {
       .select("-photo")
       .limit(12)
       .sort({ createdAt: -1 });
-    res.status(200).send({
+      res.status(200).send({
       success: true,
       counTotal: products.length,
       message: "ALlProducts ",

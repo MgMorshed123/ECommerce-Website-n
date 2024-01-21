@@ -1,7 +1,7 @@
 import express from "express";
 import {
   
-  createProductController,
+  createProductController, getProductController,
 
 } from "../Controllers/productController.js";
 import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware.js";
@@ -17,6 +17,17 @@ router.post(
   formidable(),
   createProductController
 );
+
+
+router.get(
+  "/get-product",
+  requireSignIn,
+  isAdmin,
+  formidable(),
+  getProductController
+
+)
+
 
 
 
