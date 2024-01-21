@@ -23,6 +23,7 @@ import Products from './Component/Admin/Products.js';
 import Users from './Component/Admin/Users.js';
 import Orders from './Pages/user/Orders.js';
 import Profile from './Pages/user/Profile.js';
+import UpdateProduct from './Component/Admin/UpdateProduct.js';
 // import Dashboard from './Pages/user/DashBoARD.js';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
      <Route path='admin' element ={<AdminDashboard></AdminDashboard>} />
      <Route path="admin/create-category" element={<CreateCategory />} />
     <Route path="admin/create-product" element={<CreateProduct />} />
+    <Route path="admin/product/:slug" element={<UpdateProduct />} />
     <Route path="admin/products" element={<Products/>} />
     <Route path="admin/users" element={<Users/>} />
      </Route>
