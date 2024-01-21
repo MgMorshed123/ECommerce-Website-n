@@ -21,7 +21,7 @@ export const requireSignIn = async(req,res,next) => {
 export const isAdmin = async (req,res,next) => {
     const user = await userModel.findById(req.user._id)
     try {   
-        if (user.role !== "Admin") {
+        if (user.role !== "1") {
             return res.status(401).send({
                 success : false,
                 message : 'Unauthorizes Access',
