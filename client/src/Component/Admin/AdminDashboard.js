@@ -2,9 +2,13 @@ import React from "react";
 // import AdminMenu from "../../components/Layout/AdminMenu";
 // import Layout from "./../../components/Layout/Layout";
 import { useAuth } from "../../Context/Auth";
+import AdminMenu from "../Layout/AdminMenu";
+import Layout from "../Layout/Layout";
 
 const AdminDashboard = () => {
+    
   const [auth] = useAuth();
+
   return (
     <Layout>
       <div className="container-fluid m-3 p-3 dashboard">

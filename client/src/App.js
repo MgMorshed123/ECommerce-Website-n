@@ -14,6 +14,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import DashBoARD from './Pages/user/DashBoARD.js';
 import PrivateRoute from './Component/Route/Private.js';
 import ForgotPasssword from './Pages/Auth/Forgot-Password.js';
+import AdminRoute from './Component/Route/AdminRoute.js';
+import AdminDashboard from './Component/Admin/AdminDashboard.js';
 // import Dashboard from './Pages/user/DashBoARD.js';
 
 function App() {
@@ -29,6 +31,10 @@ function App() {
 
      <Route path='/dashboard' element={<PrivateRoute></PrivateRoute>}>
      <Route path='' element ={<DashBoARD></DashBoARD>} />
+     </Route>
+     
+     <Route path='/dashboard' element={<AdminRoute></AdminRoute>}>
+     <Route path='admin' element ={<AdminDashboard></AdminDashboard>} />
      </Route>
 
     <Route path='/policy' element ={<Policy></Policy>} />
