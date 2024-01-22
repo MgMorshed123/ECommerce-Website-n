@@ -1,7 +1,7 @@
 import express from "express";
 import {
   
-  createProductController, deleteProductController, getProductController, getSingleProductController, productCountController, productFiltersController, productListController, productPhotoController, updateProductController,
+  createProductController, deleteProductController, getProductController, getSingleProductController, productCountController, productFiltersController, productListController, productPhotoController, searchProductController, updateProductController,
 
 } from "../Controllers/productController.js";
 import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware.js";
@@ -60,5 +60,9 @@ router.get("/product-count", productCountController);
 
 //product per page
 router.get("/product-list/:page", productListController);
+
+
+//search product
+router.get("/search/:keyword", searchProductController);
 
 export default router;

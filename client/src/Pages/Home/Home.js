@@ -95,7 +95,7 @@ const HomePage = () => {
     }
     setChecked(all);
   };
-  
+
   useEffect(() => {
     if (!checked.length || !radio.length) getAllProducts();
   }, [checked.length, radio.length]);
@@ -116,6 +116,8 @@ const HomePage = () => {
       console.log(error);
     }
   };
+
+  
   return (
     <Layout title={"ALl Products - Best offers "}>
       {/* banner image */}
