@@ -6,6 +6,8 @@ import  Layout from '../../Component/Layout/Layout';
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+
+
 const Products = () => {
   const [products, setProducts] = useState([]);
 
@@ -24,6 +26,8 @@ const Products = () => {
   useEffect(() => {
     getAllProducts();
   }, []);
+
+
   return (
     <Layout>
       <div className="row dashboard">
@@ -42,6 +46,7 @@ const Products = () => {
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
                     src={`/api/v1/products/product-photo/${p._id}`}
+                    style={{ width: "14rem",  height: "8rem"}}
                     className="card-img-top"
                     alt={p.name}
                   />
