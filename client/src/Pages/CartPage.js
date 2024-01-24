@@ -14,6 +14,7 @@ import { useCart } from "../Context/Cart";
 import Layout from "../Component/Layout/Layout";
 
 const CartPage = () => {
+    
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
   const [clientToken, setClientToken] = useState("");
