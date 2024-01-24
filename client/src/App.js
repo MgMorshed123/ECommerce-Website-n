@@ -24,6 +24,7 @@ import Users from './Component/Admin/Users.js';
 import Orders from './Pages/user/Orders.js';
 import Profile from './Pages/user/Profile.js';
 import UpdateProduct from './Component/Admin/UpdateProduct.js';
+import ProductDetails from './Pages/ProductDetails/ProductDetails.js';
 // import Dashboard from './Pages/user/DashBoARD.js';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
   
   <Routes>
     <Route path='/' element ={<Home></Home>} />
+    <Route path='/product/:slug' element ={<ProductDetails></ProductDetails>} />
     <Route path='/about' element ={<About></About>} />
     <Route path='/contact' element ={<Coontact></Coontact>} />
     <Route path='/forgot-password' element ={<ForgotPasssword></ForgotPasssword>} />

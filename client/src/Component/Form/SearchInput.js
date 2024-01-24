@@ -18,6 +18,8 @@ const SearchInput = () => {
       console.log(error);
     }
   };
+
+  
   return (
     <div>
       <form
