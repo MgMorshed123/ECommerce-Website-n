@@ -1,9 +1,10 @@
 import React from "react";
-// import { useSearch } from "../../context/search";
+import { useSearch } from "../../Context/Search";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const SearchInput = () => {
-//   const [values, setValues] = useSearch();
+
+  const [values, setValues] = useSearch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
