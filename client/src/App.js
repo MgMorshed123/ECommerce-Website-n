@@ -25,6 +25,10 @@ import Orders from './Pages/user/Orders.js';
 import Profile from './Pages/user/Profile.js';
 import UpdateProduct from './Component/Admin/UpdateProduct.js';
 import ProductDetails from './Pages/ProductDetails/ProductDetails.js';
+import Categories from './Pages/Category/Category.js';
+import CategoryProduct from './Pages/user/CategoryProuct.js';
+import SearchInput from './Component/Form/SearchInput.js';
+import CartPage from './Pages/CartPage.js';
 // import Dashboard from './Pages/user/DashBoARD.js';
 
 function App() {
@@ -36,6 +40,10 @@ function App() {
     <Route path='/' element ={<Home></Home>} />
     <Route path='/product/:slug' element ={<ProductDetails></ProductDetails>} />
     <Route path='/about' element ={<About></About>} />
+    <Route path='/cart' element ={<CartPage></CartPage>} />
+    <Route path='/categories' element ={<Categories></Categories>} />
+    <Route path='/categories/:slug' element ={<CategoryProduct></CategoryProduct>} />
+    <Route path='/search' element ={<SearchInput></SearchInput>} />
     <Route path='/contact' element ={<Coontact></Coontact>} />
     <Route path='/forgot-password' element ={<ForgotPasssword></ForgotPasssword>} />
 
