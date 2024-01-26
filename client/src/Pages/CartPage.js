@@ -12,6 +12,7 @@ import '../Styles/CartSyles.css'
 import { useAuth } from "../Context/Auth";
 import { useCart } from "../Context/Cart";
 import Layout from "../Component/Layout/Layout";
+import DropIn from "braintree-web-drop-in-react";
 
 const CartPage = () => {
     
@@ -21,6 +22,7 @@ const CartPage = () => {
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
 
   //total price
   const totalPrice = () => {
@@ -37,6 +39,8 @@ const CartPage = () => {
       console.log(error);
     }
   };
+
+
   //detele item
   const removeCartItem = (pid) => {
     try {
@@ -53,7 +57,7 @@ const CartPage = () => {
   //get payment gateway token
   const getToken = async () => {
     try {
-      const { data } = await axios.get("/api/v1/product/braintree/token");
+      const { data } = await axios.get("/api/v1/products/braintree/token");
       setClientToken(data?.clientToken);
     } catch (error) {
       console.log(error);
@@ -68,7 +72,7 @@ const CartPage = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post("/api/v1/product/braintree/payment", {
+      const { data } = await axios.post("/api/v1/products/braintree/payment", {
         nonce,
         cart,
       });
@@ -166,7 +170,7 @@ const CartPage = () => {
                           state: "/cart",
                         })
                       }
-                    >
+                    >handlePayment
                       Plase Login to checkout
                     </button>
                   )}
@@ -176,7 +180,7 @@ const CartPage = () => {
                 {!clientToken || !auth?.token || !cart?.length ? (
                   ""
                 ) : (
-                 /*  <>
+                  <>
                     <DropIn
                       options={{
                         authorization: clientToken,
@@ -194,8 +198,8 @@ const CartPage = () => {
                     >
                       {loading ? "Processing ...." : "Make Payment"}
                     </button>
-                  </> */
-                  <h1>gaga</h1>
+                  </>
+                  
                 )}
               </div>
             </div>

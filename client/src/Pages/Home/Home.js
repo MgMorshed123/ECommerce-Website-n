@@ -47,7 +47,7 @@ const HomePage = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      const { data } = await axios.get(`/api/v1/products/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
     } catch (error) {
@@ -191,7 +191,7 @@ const HomePage = () => {
                     >
                       More Details
                     </button>
-                    {/* <button
+                     <button
                       className="btn btn-dark ms-1"
                       onClick={() => {
                         setCart([...cart, p]);
@@ -203,7 +203,7 @@ const HomePage = () => {
                       }}
                     >
                       ADD TO CART
-                    </button> */}
+                    </button> 
                   </div>
                 </div>
               </div>

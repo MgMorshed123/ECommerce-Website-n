@@ -5,21 +5,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../../Styles/ProductDetails.css";
 
 const ProductDetails = () => {
+
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-
+   
   //initalp details
   useEffect(() => {
     if (params?.slug) getProduct();
   }, [params?.slug]);
-
   //getProduct
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `/api/v1/product/get-product/${params.slug}`
+        `/api/v1/products/get-product/${params.slug}`
       );
       setProduct(data?.product);
       getSimilarProduct(data?.product._id, data?.product.category._id);
@@ -27,26 +27,23 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
-  
   //get similar product
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
-        `/api/v1/product/related-product/${pid}/${cid}`
+        `/api/v1/products/related-product/${pid}/${cid}`
       );
       setRelatedProducts(data?.products);
     } catch (error) {
       console.log(error);
     }
   };
-
-  
   return (
     <Layout>
       <div className="row container product-details">
         <div className="col-md-6">
           <img
-            src={`/api/v1/product/product-photo/${product._id}`}
+            src={`/api/v1/products/product-photo/${product._id}`}
             className="card-img-top"
             alt={product.name}
             height="300"
@@ -79,7 +76,7 @@ const ProductDetails = () => {
           {relatedProducts?.map((p) => (
             <div className="card m-2" key={p._id}>
               <img
-                src={`/api/v1/product/product-photo/${p._id}`}
+                src={`/api/v1/products/product-photo/${p._id}`}
                 className="card-img-top"
                 alt={p.name}
               />
@@ -103,7 +100,8 @@ const ProductDetails = () => {
                   >
                     More Details
                   </button>
-                  {/* <button
+
+                {/*    <button
                   className="btn btn-dark ms-1"
                   onClick={() => {
                     setCart([...cart, p]);
@@ -115,7 +113,8 @@ const ProductDetails = () => {
                   }}
                 >
                   ADD TO CART
-                </button> */}
+                </button>  */}
+
                 </div>
               </div>
             </div>
