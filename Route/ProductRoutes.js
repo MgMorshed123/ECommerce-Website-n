@@ -1,5 +1,5 @@
 import express from "express";
-import formidable from "express-formidable";
+import formidable from 'formidable';
 import {
   
   brainTreePaymentController,
