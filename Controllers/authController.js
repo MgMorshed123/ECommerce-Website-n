@@ -3,7 +3,8 @@ import userModel from "../Models/userModel.js";
 import JWT from 'jsonwebtoken';
 import braintree from "braintree";
 import  bcrypt from 'bcrypt'
-import orderModel from "../models/orderModel.js";
+import orderModel from "../Models/orderModel.js";
+// import orderModel from "../models/orderModel.js";
 
 
 
