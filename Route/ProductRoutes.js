@@ -13,7 +13,7 @@ import {  updateProfileController } from "../Controllers/authController.js";
 
 const router = express.Router();
 
-//create-  product/create-product
+//create-  product/create-product ddd
 router.post(
   "/create-product",
   requireSignIn,
