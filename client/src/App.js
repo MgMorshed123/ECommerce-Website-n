@@ -29,6 +29,7 @@ import Categories from './Pages/Category/Category.js';
 import CategoryProduct from './Pages/user/CategoryProuct.js';
 import SearchInput from './Component/Form/SearchInput.js';
 import CartPage from './Pages/CartPage.js';
+import AdminOrders from './Pages/Admin/AdminOrders.js';
 // import Dashboard from './Pages/user/DashBoARD.js';
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
     <Route path='/about' element ={<About></About>} />
     <Route path='/cart' element ={<CartPage></CartPage>} />
     <Route path='/categories' element ={<Categories></Categories>} />
-    <Route path='/categories/:slug' element ={<CategoryProduct></CategoryProduct>} />
+    <Route path='/category/:slug' element ={<CategoryProduct></CategoryProduct>} />
     <Route path='/search' element ={<SearchInput></SearchInput>} />
     <Route path='/contact' element ={<Coontact></Coontact>} />
     <Route path='/forgot-password' element ={<ForgotPasssword></ForgotPasssword>} />
@@ -55,6 +56,7 @@ function App() {
      
      <Route path='/dashboard' element={<AdminRoute></AdminRoute>}>
      <Route path='admin' element ={<AdminDashboard></AdminDashboard>} />
+     <Route path='admin/orders' element ={<AdminOrders></AdminOrders>} />
      <Route path="admin/create-category" element={<CreateCategory />} />
     <Route path="admin/create-product" element={<CreateProduct />} />
     <Route path="admin/product/:slug" element={<UpdateProduct />} />

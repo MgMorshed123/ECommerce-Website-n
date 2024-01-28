@@ -7,6 +7,7 @@ import orderModel from "../models/orderModel.js";
 
 
 
+
 export const  registerController   =  async( req, res) => {
       try {
          const {name, email , password, phone, address, answer } = req.body;
@@ -224,16 +225,6 @@ export const forgotPasswordController = async (req, res) => {
     }
   };
 
-
-
-
-
-
-
-
-
-
-
 //orders
 export const getOrdersController = async (req, res) => {
   try {
@@ -258,7 +249,7 @@ export const getAllOrdersController = async (req, res) => {
       .find({})
       .populate("products", "-photo")
       .populate("buyer", "name")
-      .sort({ createdAt: "-1" });
+      .sort({ createdAt: -1 });
     res.json(orders);
   } catch (error) {
     console.log(error);
@@ -269,7 +260,6 @@ export const getAllOrdersController = async (req, res) => {
     });
   }
 };
-
 //order status
 export const orderStatusController = async (req, res) => {
   try {
@@ -290,3 +280,4 @@ export const orderStatusController = async (req, res) => {
     });
   }
 };
+

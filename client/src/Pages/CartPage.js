@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../Component/Layout/Layout";
-// import { useCart } from "../context/cart";
-// import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
-import "../Styles/CartSyles.css"
-import { useAuth } from "../Context/Auth";
+import "../../src/Styles/CartSyles.css";
+import "../../src/Styles/CartSyles.css";
 import { useCart } from "../Context/Cart";
+import { useAuth } from "../Context/Auth";
+// import Layout from "antd/es/layout/layout";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
   const [clientToken, setClientToken] = useState("");
-  // const [ dropinInstance, setdropinInstance] = useState("");
-  const [dropinInstance, setDropinInstance] = useState(null);
+  const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -65,8 +64,7 @@ const CartPage = () => {
   const handlePayment = async () => {
     try {
       setLoading(true);
-      const { nonce } = await dropinInstance.requestPaymentMethod();
-      console.log(nonce)
+      const { nonce } = await instance.requestPaymentMethod();
       const { data } = await axios.post("/api/v1/products/braintree/payment", {
         nonce,
         cart,
@@ -81,8 +79,6 @@ const CartPage = () => {
       setLoading(false);
     }
   };
-
-  console.log(cart.length)
   return (
     <Layout>
       <div className=" cart-page">
@@ -109,7 +105,7 @@ const CartPage = () => {
                 <div className="row card flex-row" key={p._id}>
                   <div className="col-md-4">
                     <img
-                      src={`/api/v1/product/product-photo/${p._id}`}
+                      src={`/api/v1/products/product-photo/${p._id}`}
                       className="card-img-top"
                       alt={p.name}
                       width="100%"
@@ -174,25 +170,24 @@ const CartPage = () => {
                 </div>
               )}
               <div className="mt-2">
-                { !cart?.length ? (
+                {!clientToken || !auth?.token || !cart?.length ? (
                   ""
                 ) : (
                   <>
-                 <DropIn
-                options={{
-                  authorization: clientToken,
-                  paypal: {
-                    flow: "vault",
-                  },
-                }}
-                onInstance={(instance) => setDropinInstance(instance)}
-              />
-
+                    <DropIn
+                      options={{
+                        authorization: clientToken,
+                        paypal: {
+                          flow: "vault",
+                        },
+                      }}
+                      onInstance={(instance) => setInstance(instance)}
+                    />
 
                     <button
                       className="btn btn-primary"
                       onClick={handlePayment}
-                      disabled={loading }
+                      disabled={loading || !instance || !auth?.user?.address}
                     >
                       {loading ? "Processing ...." : "Make Payment"}
                     </button>

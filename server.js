@@ -6,9 +6,13 @@ import authRoutes from './Route/authRoute.js'
 import CategoryRoutes from './Route/categoryRoutes.js'
 import ProductsRoutes from './Route/ProductRoutes.js'
 import cors from 'cors'
-
+import path from 'path'
+import morgan from 'morgan';
 const app = express();
+app.use(morgan("dev"))
 app.use(express.json());
+app.use(express.static(path.join(__dirname, './clinet/build')))
+
 
 
 app.use(cors())
@@ -34,6 +38,17 @@ connectDb()
 app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/category", CategoryRoutes)
 app.use("/api/v1/products", ProductsRoutes)
+
+// rest api 
+
+// app.use('*' , function (req,res) {
+//   res.sendFile(path.join(__dirname, *./client/build/indexedDB.html* ));})
+
+
+
+  app.use('*', function (req, res) {
+    res.sendFile(path.join(__dirname, "./client/build/indexedDB.html"));
+  });
 
 
 app.listen(port, () => {

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-// import Layout from "../Components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../Styles/CategoryProductStyles.css";
-
 import axios from "axios";
 import Layout from "../../Component/Layout/Layout";
 
@@ -18,7 +16,7 @@ const CategoryProduct = () => {
   const getPrductsByCat = async () => {
     try {
       const { data } = await axios.get(
-        `/api/v1/product/product-category/${params.slug}`
+        `/api/v1/products/product-category/${params.slug}`
       );
       setProducts(data?.products);
       setCategory(data?.category);
@@ -34,11 +32,11 @@ const CategoryProduct = () => {
         <h6 className="text-center">{products?.length} result found </h6>
         <div className="row">
           <div className="col-md-9 offset-1">
-            <div className="d-flex flex-wrap">
+            <div className="d-flex ">
               {products?.map((p) => (
                 <div className="card m-2" key={p._id}>
                   <img
-                    src={`/api/v1/product/product-photo/${p._id}`}
+                    src={`/api/v1/products/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />
