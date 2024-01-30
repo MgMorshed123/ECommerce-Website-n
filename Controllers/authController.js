@@ -9,11 +9,10 @@ import orderModel from "../Models/orderModel.js";
 
 
 export const  registerController   =  async( req, res) => {
+
       try {
          const {name, email , password, phone, address, answer } = req.body;
-
-        // validation
-
+        // validatio
         if(!name){
             return res.send({message : "Name is Required"})
         }
@@ -34,7 +33,6 @@ export const  registerController   =  async( req, res) => {
 
         const existingUser =  await userModel.findOne( {email})
 
-
         if(existingUser){
             return  res.status(200).send({
                 success : false,
@@ -42,37 +40,22 @@ export const  registerController   =  async( req, res) => {
             })
         }
 
-        
         const hashedPassword = await hashPassword(password)
-
         const user = await new userModel({name,email,phone, address, password : hashedPassword, answer}).save()
-        
         res.status(201).send({
             success: true,
             message: "User Registered Successfully",
             user,
           });
-          
-
       }
- 
-
-   
-
        catch (error) {
-
         console.log(error)
         res.status(500).send({
             success : false,
             message : 'Error In Registeration',
             error
         }) 
-
       }
-
-
-
-
 }
 
 
@@ -151,6 +134,7 @@ export const  testController = (req,res) => {
 export const forgotPasswordController = async (req, res) => {
 
     try {
+      
       const { email, answer, newPassword } = req.body;
 
       if (!email) {
@@ -232,7 +216,7 @@ export const getOrdersController = async (req, res) => {
       .find({ buyer: req.user._id })
       .populate("products", "-photo")
       .populate("buyer", "name");
-    res.json(orders);
+      res.json(orders);
   } catch (error) {
     console.log(error);
     res.status(500).send({
@@ -242,6 +226,9 @@ export const getOrdersController = async (req, res) => {
     });
   }
 };
+
+
+
 //orders
 export const getAllOrdersController = async (req, res) => {
   try {
@@ -250,7 +237,7 @@ export const getAllOrdersController = async (req, res) => {
       .populate("products", "-photo")
       .populate("buyer", "name")
       .sort({ createdAt: -1 });
-    res.json(orders);
+      res.json(orders);
   } catch (error) {
     console.log(error);
     res.status(500).send({
@@ -260,6 +247,9 @@ export const getAllOrdersController = async (req, res) => {
     });
   }
 };
+
+
+
 //order status
 export const orderStatusController = async (req, res) => {
   try {

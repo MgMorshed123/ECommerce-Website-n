@@ -1,6 +1,4 @@
 
-// import productModel from "../models/productModel.js";
-// import categoryModel from "../models/categoryModel.js";
 import orderModel from "../Models/orderModel.js";
 import fs from "fs";
 import slugify from "slugify";
@@ -20,9 +18,11 @@ var gateway = new braintree.BraintreeGateway({
 });
 
 export const createProductController = async (req, res) => {
+  
   try {
     const { name, description, price, category, quantity, shipping } = req.fields;
     const { photo } = req.files;
+
     //alidation
     switch (true) {
       case !name:
@@ -41,11 +41,13 @@ export const createProductController = async (req, res) => {
           .send({ error: "photo is Required and should be less then 1mb" });
     }
 
-    const products = new productModel({ ...req.fields, slug: slugify(name) });
+    const products = new productModel({ ...req.fields, slug: slugify(name)});
+
     if (photo) {
       products.photo.data = fs.readFileSync(photo.path);
       products.photo.contentType = photo.type;
     }
+    
     await products.save();
     res.status(201).send({
       success: true,
@@ -209,9 +211,7 @@ export const updateProductController = async (req, res) => {
 export const productFiltersController = async (req, res) => {
   try {
     const { checked, radio } = req.body;
-
     console.log(checked, radio)
-
     let args = {};
     if (checked.length > 0) args.category = checked;
     if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
@@ -234,15 +234,12 @@ export const productFiltersController = async (req, res) => {
 
 // product count
 export const productCountController = async (req, res) => {
-
   try {
-
     const total = await productModel.find({}).estimatedDocumentCount();
     res.status(200).send({
       success: true,
       total,
     });
-
   } catch (error) {
     console.log(error);
     res.status(400).send({
@@ -258,15 +255,15 @@ export const productCountController = async (req, res) => {
 export const productListController = async (req, res) => {
   try {
 
-    const perPage = 6;
-    const page = req.params.page ? req.params.page : 1;
-    const products = await productModel
+      const perPage = 6;
+      const page = req.params.page ? req.params.page : 1;
+      const products = await productModel
       .find({})
       .select("-photo")
       .skip((page - 1) * perPage)
       .limit(perPage)
       .sort({ createdAt: -1 });
-    res.status(200).send({
+      res.status(200).send({
       success: true,
       products,
     });
@@ -374,11 +371,16 @@ export const braintreeTokenController = async (req, res) => {
 //payment
 export const brainTreePaymentController = async (req, res) => {
   try {
+
+
     const { nonce, cart } = req.body;
     let total = 0;
+
     cart.map((i) => {
       total += i.price;
     });
+
+
     let newTransaction = gateway.transaction.sale(
       {
         amount: total,
@@ -387,6 +389,7 @@ export const brainTreePaymentController = async (req, res) => {
           submitForSettlement: true,
         },
       },
+
       function (error, result) {
         if (result) {
           const order = new orderModel({

@@ -2,6 +2,8 @@
 import slugify from "slugify";
 import categoryModel from "../Models/categoryModel.js";
 
+
+
 export const createCategoryController = async (req, res) => {
   try {
     const { name } = req.body;
@@ -34,6 +36,9 @@ export const createCategoryController = async (req, res) => {
     });
   }
 };
+
+
+
 
 //update category
 export const updateCategoryController = async (req, res) => {
@@ -79,6 +84,9 @@ export const categoryControlller = async (req, res) => {
     }
   };
   
+
+
+
   // single category
   export const singleCategoryController = async (req, res) => {
     try {
@@ -98,6 +106,9 @@ export const categoryControlller = async (req, res) => {
     }
   };
   
+
+
+
   //delete category
   export const deleteCategoryCOntroller = async (req, res) => {
     try {

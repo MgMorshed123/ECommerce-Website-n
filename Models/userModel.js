@@ -1,34 +1,26 @@
 
-
 import mongoose  from "mongoose";
-
-
 const userSchema = new mongoose.Schema(
-
     {
         name: {
             type: String,
             required: true,
-        
           },
-          email: {
+        email: {
             type: String,
             required: true,
             trim: true,
             unique: true,
-            lowercase: true, // Ensure email uniqueness is case-insensitive
+            lowercase: true,
           },
-
         password : {
             type : String,
             required: true,
         },
-
         phone : {
             type : String,
             required: true,
         },
-
         address : {
             type : String,
             required: true,
@@ -37,15 +29,11 @@ const userSchema = new mongoose.Schema(
             type : String,
             required: true,
         },
-
         role : {
             type : String,
-         
         },
-
     },
-          { timestamps : true}
-
+          { timestamps : true }
 )
 
 
