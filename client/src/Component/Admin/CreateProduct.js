@@ -10,6 +10,8 @@ import AdminMenu from "../Layout/AdminMenu";
 const { Option } = Select;
 
 const CreateProduct = () => {
+
+
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
@@ -37,33 +39,32 @@ const CreateProduct = () => {
     getAllCategory();
   }, []);
 
-  //create product function
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      const productData = new FormData();
-      productData.append("name", name);
-      productData.append("description", description);
-      productData.append("price", price);
-      productData.append("quantity", quantity);
-      productData.append("photo", photo);
-      productData.append("category", category);
-
-      const { data } = axios.post(
-        "/api/v1/products/create-product",
-        productData
-      );
-      if (data?.success) {
-        toast.error(data?.message);
-      } else {
-        toast.success("Product Created Successfully");
-        navigate("/dashboard/admin/products");
-      }
+        const productData = {
+            name,
+            description,
+            price,
+            quantity,
+            photo,
+            category
+        };
+         console.log(productData)
+        const response = await axios.post("/api/v1/products/create-product", productData);
+        console.log(response)
+        if (response.data.success) {
+            toast.error(response.data.message);
+        } else {
+            toast.success("Product Created Successfully");
+            navigate("/dashboard/admin/products");
+        }
     } catch (error) {
-      console.log(error);
-      toast.error("something went wrong");
+        console.error("Error creating product:", error);
+        toast.error("Something went wrong while creating product.");
     }
-  };
+};
+
 
   return (
     <Layout title={"Dashboard - Create Product"}>
@@ -75,6 +76,7 @@ const CreateProduct = () => {
           <div className="col-md-9">
             <h1>Create Product</h1>
             <div className="m-1 w-75">
+
               <Select
                 bordered={false}
                 placeholder="Select a category"
@@ -86,11 +88,14 @@ const CreateProduct = () => {
                 }}
               >
                 {categories?.map((c) => (
-                  <Option key={c._id} value={c._id}>
+                  <Option key={c._id}
+                   value={c._id}>
                     {c.name}
                   </Option>
                 ))}
+
               </Select>
+
               <div className="mb-3">
                 <label className="btn btn-outline-secondary col-md-12">
                   {photo ? photo.name : "Upload Photo"}
@@ -103,6 +108,7 @@ const CreateProduct = () => {
                   />
                 </label>
               </div>
+
               <div className="mb-3">
                 {photo && (
                   <div className="text-center">
@@ -115,6 +121,8 @@ const CreateProduct = () => {
                   </div>
                 )}
               </div>
+
+              
               <div className="mb-3">
                 <input
                   type="text"

@@ -11,6 +11,8 @@ import { AiOutlineReload } from "react-icons/ai";
 import "../../Styles/HomeStyles.css"
 
 const HomePage = () => {
+
+
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
@@ -87,6 +89,7 @@ const HomePage = () => {
 
   // filter by cat
   const handleFilter = (value, id) => {
+    console.log("filter", value,id)
     let all = [...checked];
     if (value) {
       all.push(id);
@@ -96,9 +99,12 @@ const HomePage = () => {
     setChecked(all);
   };
 
+
   useEffect(() => {
     if (!checked.length || !radio.length) getAllProducts();
   }, [checked.length, radio.length]);
+
+
 
   useEffect(() => {
     if (checked.length || radio.length) filterProduct();
@@ -119,7 +125,7 @@ const HomePage = () => {
 
   
   return (
-    <Layout title={"ALl Products - Best offers "}>
+    <Layout title={"ALl Products - Best offers"}>
       {/* banner image */}
       <img
         src="/images/banner.png"

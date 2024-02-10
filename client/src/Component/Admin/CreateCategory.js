@@ -9,7 +9,9 @@ import axios from "axios";
 import CategoryForm from "../../Component/Form/Form";
 
 import { Modal } from "antd";
+
 const CreateCategory = () => {
+
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [visible, setVisible] = useState(false);
@@ -56,6 +58,7 @@ const CreateCategory = () => {
   //update category
   const handleUpdate = async (e) => {
     e.preventDefault();
+
     try {
       const { data } = await axios.put(
         `/api/v1/category/update-category/${selected._id}`,
@@ -74,9 +77,11 @@ const CreateCategory = () => {
       console.log(error);
     }
   };
+
+  
   //delete category
   const handleDelete = async (pId) => {
-
+    
     console.log(pId)
     try {
       const { data } = await axios.delete(
@@ -93,6 +98,8 @@ const CreateCategory = () => {
       toast.error("Somtihing went wrong");
     }
   };
+
+
   return (
     <Layout title={"Dashboard - Create Category"}>
       <div className="container-fluid m-3 p-3 dashboard">
@@ -148,7 +155,9 @@ const CreateCategory = () => {
                 </tbody>
               </table>
             </div>
-           {  <Modal
+
+           {  
+           <Modal
               onCancel={() => setVisible(false)}
               footer={null}
               visible={visible}
@@ -158,7 +167,9 @@ const CreateCategory = () => {
                 setValue={setUpdatedName}
                 handleSubmit={handleUpdate}
               />
-            </Modal> }
+            </Modal>
+            }
+
           </div>
         </div>
       </div>

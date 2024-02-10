@@ -67,6 +67,7 @@ const UpdateProduct = () => {
 
   //create product function
   const handleUpdate = async (e) => {
+    
     e.preventDefault();
     try {
       const productData = new FormData();
@@ -108,6 +109,9 @@ const UpdateProduct = () => {
       toast.error("Something went wrong");
     }
   };
+
+
+
   return (
     <Layout title={"Dashboard - Create Product"}>
       <div className="container-fluid m-3 p-3">

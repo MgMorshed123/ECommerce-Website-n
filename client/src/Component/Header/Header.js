@@ -8,9 +8,12 @@ import { useCart } from "../../Context/Cart";
 import { Badge } from "antd";
 
 const Header = () => {
+
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const categories = useCategory();
+
+
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -20,6 +23,8 @@ const Header = () => {
     localStorage.removeItem("auth");
     toast.success("Logout Successfully");
   };
+
+  
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">

@@ -1,18 +1,16 @@
 import express from "express";
-import formidable from 'formidable';
+import formidable from 'express-formidable';
 import {
-  
   brainTreePaymentController,
   braintreeTokenController,
   createProductController, deleteProductController, getProductController, getSingleProductController, productCategoryController, productCountController, productFiltersController, productListController, productPhotoController, realtedProductController, searchProductController, updateProductController,
-
 } from "../Controllers/productController.js";
-import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware.js";
 
+import { isAdmin, requireSignIn } from "../Middlewares/authMiddleware.js";
 import {  updateProfileController } from "../Controllers/authController.js";
 
-const router = express.Router();
 
+const router = express.Router();
 //create-  product/create-product ddd
 router.post(
   "/create-product",

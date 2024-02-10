@@ -11,6 +11,7 @@ import AdminMenu from "../../Component/Layout/AdminMenu";
 const { Option } = Select;
 
 const AdminOrders = () => {
+
   const [status, setStatus] = useState([
     "Not Process",
     "Processing",
@@ -18,9 +19,11 @@ const AdminOrders = () => {
     "deliverd",
     "cancel",
   ]);
+
   const [changeStatus, setCHangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+ 
   
   const getOrders = async () => {
     try {
@@ -32,9 +35,13 @@ const AdminOrders = () => {
     }
   };
 
+  
+
   useEffect(() => {
     if (auth?.token) getOrders();
   }, [auth?.token]);
+
+
 
   const handleChange = async (orderId, value) => {
     try {
@@ -46,6 +53,8 @@ const AdminOrders = () => {
       console.log(error);
     }
   };
+
+
   return (
     <Layout title={"All Orders Data"}>
       <div className="row dashboard">
