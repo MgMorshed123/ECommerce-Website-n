@@ -1,11 +1,10 @@
 
-import orderModel from "../Models/orderModel.js";
 import fs from "fs";
 import slugify from "slugify";
 import braintree from "braintree";
 import dotenv from "dotenv";
 import productModel from "../Models/productModel.js";
-import categoryModel from "../Models/categoryModel.js";
+
 
 dotenv.config();
 

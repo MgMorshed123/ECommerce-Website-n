@@ -1,13 +1,14 @@
 import express from 'express';
 import colors from 'colors';
 import  dotenv from 'dotenv'
-import connectDb from './Config/db.js';
-import authRoutes from './Route/authRoute.js'
-import CategoryRoutes from './Route/categoryRoutes.js'
-import ProductsRoutes from './Route/ProductRoutes.js'
+// import connectDb from './Config/db.js';
+import authRoutes from './Server/Route/authRoute.js'
+import CategoryRoutes from './Server/Route/categoryRoutes.js'
+import ProductsRoutes from './Server/Route/ProductRoutes.js'
 import cors from 'cors'
 import path from 'path'
 import morgan from 'morgan';
+import connectDb from './Server/Config/db.js';
 const app = express();
 app.use(morgan("dev"))
 app.use(express.json());

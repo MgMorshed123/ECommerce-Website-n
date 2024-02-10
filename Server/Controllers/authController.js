@@ -1,9 +1,12 @@
-import {  hashPassword } from "../Helpers/authHelpers.js";
-import userModel from "../Models/userModel.js";
+// import {  hashPassword } from "../Helpers/authHelpers.js";
+// import userModel from "../Models/userModel.js";
 import JWT from 'jsonwebtoken';
 import braintree from "braintree";
 import  bcrypt from 'bcrypt'
 import orderModel from "../Models/orderModel.js";
+import { hashPassword } from '../Helpers/authHelpers.js';
+import userModel from '../Models/userModel.js';
+
 
 
 
